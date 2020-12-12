@@ -1,0 +1,6 @@
+composer create-project --prefer-dist laravel/laravel nombre “6.*”
+php artisan serve (ejecutar el ambiente de desarrollo del proyecto)
+php artisan make:controller (crear un controlador)
+php artisan make:model (crear un modelo)
+php artisan make:migration nombre_mig --create nombre_table
+php artisan migrate (correr las migraciones)
