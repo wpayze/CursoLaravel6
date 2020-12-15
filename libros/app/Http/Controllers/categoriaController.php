@@ -30,6 +30,14 @@ class categoriaController extends Controller
 
         Categoria::create( $request->all() );
 
-        return redirect()->route("categorias.index");
+        return redirect()->route("categorias.index")->with("exitoso", "Categoria creada exitosamente.");
+    }
+
+    public function destroy ($id) {
+        
+        $categoria = Categoria::find($id);
+        $categoria->delete();
+
+        return redirect()->route("categorias.index")->with("exitoso", "Categoria borrada exitosamente.");
     }
 }

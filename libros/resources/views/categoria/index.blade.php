@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+
+    @include("componentes.creadoPerfectamente")
+
     <h1>&Iacute;ndice de Categor&iacute;as</h1>
 
     <br>
@@ -32,7 +35,15 @@
 
                     <button type="button" class="btn btn-warning">Actualizar</button>
 
-                    <button type="button" class="btn btn-danger">Borrar</button>
+                    <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" style="display:none">Borrar</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="$('#exampleModal').modal();document.getElementById('variable').innerHTML= {{$categoria->nombre}};">
+                            Borrar
+                        </button>
+                    </form>
+
                 </td>
             </tr>
             @endforeach
@@ -41,5 +52,7 @@
     @else
         <p>No existen categorias todav&iacute;a...</p>
     @endif
+
+    @include("componentes.modalBorrar")
 
 @endsection

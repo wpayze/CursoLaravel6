@@ -5,10 +5,13 @@
 @endsection
 
 @section('content')
+
+    @include("componentes.creadoPerfectamente")
+
     <h1>&Iacute;ndice de Alquileres</h1>
 
     <br>
-    <button type="button" class="btn btn-success">CREAR</button>
+    <a href="{{ route('alquileres.create') }}" type="button" class="btn btn-success">CREAR</a>
     <br>
     <br>
 

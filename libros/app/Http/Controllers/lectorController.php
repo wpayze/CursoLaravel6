@@ -20,4 +20,19 @@ class lectorController extends Controller
         
         return view("lector.show", compact("lector") );
     }
+
+    public function create () {
+        return view("lector.create");
+    }
+
+    public function store(Request $request) {
+        $request->validate([
+            "nombre" => "required",
+            "telefono" => "required",
+            "direccion" => "required|min:10"
+        ]);
+        
+        Lector::create( $request->all() );
+        return redirect()->route("lectores.index")->with("exitoso", "Lector agregado exitosamente.");
+    }
 }

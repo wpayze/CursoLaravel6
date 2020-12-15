@@ -18,4 +18,17 @@ class editorialController extends Controller
         $editorial = Editorial::find($id);
         return view("editorial.show", compact("editorial"));
     }
+
+    public function create() {
+        return view("editorial.create");
+    }
+
+    public function store(Request $request) {
+        $request->validate([
+            "nombre" => "required|min:5"
+        ]);
+
+        Editorial::create( $request->all() );
+        return redirect()->route("editoriales.index")->with("exitoso", "Editorial creado exitosamente.");
+    }
 }
