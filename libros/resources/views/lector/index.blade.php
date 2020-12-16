@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @include("componentes.creadoPerfectamente")
+    @include("componentes.notificaciones")
 
     <h1>&Iacute;ndice de Lectores</h1>
 
@@ -36,8 +36,14 @@
                 <td>{{$lector->direccion}}</td>
                 <td>
                     <a href="{{ route('lectores.show', $lector->id) }}" type="button" class="btn btn-primary text-blanco">Ver</a>
-                    <button type="button" class="btn btn-warning">Actualizar</button>
-                    <button type="button" class="btn btn-danger">Borrar</button>
+                    <a href="{{ route('lectores.edit', $lector->id) }}" type="button" class="btn btn-warning">Actualizar</a>
+                    <form action="{{ route('lectores.destroy', $lector->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="abrirModal( this, '{{ $lector->nombre }}' )">
+                            Borrar
+                        </button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -47,5 +53,5 @@
         <p>No existen lectores todav&iacute;a...</p>
     @endif
 
-    
+    @include("componentes.modalBorrar")
 @endsection

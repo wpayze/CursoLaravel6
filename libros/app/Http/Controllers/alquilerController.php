@@ -43,5 +43,36 @@ class alquilerController extends Controller
         return redirect()->route("alquileres.index")->with("exitoso", "Alquiler generado exitosamente.");
     }
 
+    public function destroy ($id) {
+
+        $alquiler = Alquiler::find($id);
+        $alquiler->delete();
+        return redirect()->route("alquileres.index")->with("exitoso", "Alquiler borrado exitosamente.");
+    }
+
+    public function edit ($id) {
+
+        $libros = Libro::get();
+        $lectores = Lector::get();
+        $alquiler = Alquiler::find($id);
+
+        return view("alquiler.update", compact("alquiler", "libros", "lectores"));
+    }
+
+    public function update(Request $request, $id) {
+
+        $request->validate([
+            "lector_id" => "required",
+            "libro_id" => "required",
+            "fecha_entrada" => "required|date",
+            "fecha_salida" => "required|date"
+        ]);
+
+        $alquiler = Alquiler::find($id);
+        $alquiler->update( $request->all() );
+            
+        return redirect()->route("alquileres.index")->with("exitoso", "Alquiler actualizado exitosamente.");
+    }
+
     
 }

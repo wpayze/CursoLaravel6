@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @include("componentes.creadoPerfectamente")
+    @include("componentes.notificaciones")
     <h1>&Iacute;ndice de Autores</h1>
 
     <br>
@@ -33,8 +33,14 @@
                 <td>{{$autor->fecha_nacimiento}}</td>
                 <td>
                     <a href="{{ route('autores.show', $autor->id) }}" type="button" class="btn btn-primary texto-blanco" >Ver</a>
-                    <button type="button" class="btn btn-warning">Actualizar</button>
-                    <button type="button" class="btn btn-danger">Borrar</button>
+                    <a href="{{ route('autores.edit', $autor->id) }}" type="button" class="btn btn-warning">Actualizar</a>
+                    <form action="{{ route('autores.destroy', $autor->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="abrirModal( this, '{{ $autor->nombre }}' )">
+                            Borrar
+                        </button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -43,5 +49,5 @@
     @else
         <p>No existen autores todav&iacute;a...</p>
     @endif
-
+    @include("componentes.modalBorrar")
 @endsection

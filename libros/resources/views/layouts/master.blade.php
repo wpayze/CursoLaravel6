@@ -70,7 +70,19 @@
       </div>
 
       <script>
-        
+
+          var botonGlobal; 
+
+          function abrirModal( boton , nombre ) {
+              botonGlobal = boton;
+              document.getElementById("nombreElemento").innerHTML = nombre;
+              $("#modalBorrar").modal();
+          }
+
+          function borrarCategoria() {
+              botonGlobal.parentElement.submit();
+          }
+          
       </script>
     
 </body>

@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-@include("componentes.creadoPerfectamente")
+
+    @include("componentes.notificaciones")
     <h1>&Iacute;ndice de Libros</h1>
 
     <br>
@@ -44,8 +45,14 @@
                 <td>{{$libro->descripcion}}</td>
                 <td>
                     <a href="{{ route('libros.show', $libro->id) }}" type="button" class="btn btn-primary texto-blanco" >Ver</a>
-                    <button type="button" class="btn btn-warning">Actualizar</button>
-                    <button type="button" class="btn btn-danger">Borrar</button>
+                    <a href="{{ route('libros.edit', $libro->id) }}" type="button" class="btn btn-warning">Actualizar</a>
+                    <form action="{{ route('libros.destroy', $libro->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="abrirModal( this, '{{ $libro->titulo }}' )">
+                            Borrar
+                        </button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -54,5 +61,5 @@
     @else
         <p>No existen libros todav&iacute;a...</p>
     @endif
-
+    @include("componentes.modalBorrar")
 @endsection

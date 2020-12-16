@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @include("componentes.creadoPerfectamente")
+    @include("componentes.notificaciones")
 
     <h1>&Iacute;ndice de Alquileres</h1>
 
@@ -38,8 +38,14 @@
                 <td>{{$alquiler->fecha_entrada}}</td>
                 <td>
                     <a href="{{ route('alquileres.show', $alquiler->id) }}" type="button" class="btn btn-primary texto-blanco" >Ver</a>
-                    <button type="button" class="btn btn-warning">Actualizar</button>
-                    <button type="button" class="btn btn-danger">Borrar</button>
+                    <a href="{{ route('alquileres.edit', $alquiler->id) }}" type="button" class="btn btn-warning">Actualizar</a>
+                    <form action="{{ route('alquileres.destroy', $alquiler->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="abrirModal( this, '{{ $alquiler->id }}' )">
+                            Borrar
+                        </button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -48,5 +54,5 @@
     @else
         <p>No existen alquileres todav&iacute;a...</p>
     @endif
-
+    @include("componentes.modalBorrar")
 @endsection

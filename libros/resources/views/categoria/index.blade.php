@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @include("componentes.creadoPerfectamente")
+@include("componentes.notificaciones")
 
     <h1>&Iacute;ndice de Categor&iacute;as</h1>
 
@@ -33,13 +33,12 @@
                 <td>
                     <a href="{{ route('categorias.show', $categoria) }}" type="button" class="btn btn-primary texto-blanco" >Ver</a>
 
-                    <button type="button" class="btn btn-warning">Actualizar</button>
+                    <a href="{{ route('categorias.edit', $categoria->id) }}" type="button" class="btn btn-warning">Actualizar</a>
 
                     <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger" style="display:none">Borrar</button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="$('#exampleModal').modal();document.getElementById('variable').innerHTML= {{$categoria->nombre}};">
+                        <button type="button" class="btn btn-danger" data-toggle="modal" onclick="abrirModal( this, '{{ $categoria->nombre }}' )">
                             Borrar
                         </button>
                     </form>
