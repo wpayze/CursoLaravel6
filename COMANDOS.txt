@@ -4,3 +4,7 @@ php artisan make:controller (crear un controlador)
 php artisan make:model (crear un modelo)
 php artisan make:migration nombre_mig --create nombre_table
 php artisan migrate (correr las migraciones)
+php artisan migrate:fresh (borrar las tablas y correr las migraciones)
+php artisan make:factory nombreFactory -m nombreModelo
+php artisan make:seeder nombreSeeder
+php artisan db:seed
