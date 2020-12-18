@@ -8,3 +8,5 @@ php artisan migrate:fresh (borrar las tablas y correr las migraciones)
 php artisan make:factory nombreFactory -m nombreModelo
 php artisan make:seeder nombreSeeder
 php artisan db:seed
+composer require laravel/ui="1.*" --dev (CREAR AUTH) cmd 1
+php artisan ui:auth (CREAR AUTH) cmd 2
