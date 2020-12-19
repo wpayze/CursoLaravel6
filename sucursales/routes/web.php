@@ -23,4 +23,4 @@ Route::get('/contacto', "contactoController@create");
 Route::post('/contacto', "contactoController@store");
 
 Route::get('/sucursal', 'sucursalController@index');
-Route::get('/producto', 'productoController@index');
+Route::get('/producto/{cantidad}', 'productoController@index');

@@ -11,6 +11,10 @@
                 <input type="text" name="nombre" class="form-control">
             </div>
             <div class="form-group">
+                <label for="nombre">Email</label>
+                <input type="text" name="correo" class="form-control">
+            </div>
+            <div class="form-group">
                 <label for="nombre">Mensaje</label>
                 <input type="text" name="mensaje" class="form-control">
             </div>
