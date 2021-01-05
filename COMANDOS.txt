@@ -10,3 +10,5 @@ php artisan make:seeder nombreSeeder
 php artisan db:seed
 composer require laravel/ui="1.*" --dev (CREAR AUTH) cmd 1
 php artisan ui:auth (CREAR AUTH) cmd 2
+php artisan make:mail Contacto --markdown=emails.contacto
+php artisan make:notification nombre
