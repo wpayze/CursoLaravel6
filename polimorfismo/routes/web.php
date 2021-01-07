@@ -21,3 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get("/posts", "PostController@index")->name('posts');
 Route::get("/posts/{id}", "PostController@show")->name('post');
+Route::post("/posts/comentario", "PostController@agregarComentario")->name("comentariopost");
+
+Route::get("/videos", "VideoController@index")->name("videos");
+Route::get("/videos/{id}", "VideoController@show")->name("video");
+Route::post("/videos/comentario", "VideoController@agregarComentario")->name("comentario");

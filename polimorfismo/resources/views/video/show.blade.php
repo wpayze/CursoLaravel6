@@ -21,7 +21,6 @@
         <!-- Preview Image -->
         <iframe width="640" height="480" src="{{ $video->url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
         <hr>
 
         <!-- video Content -->
@@ -74,6 +73,34 @@
             </div>
           </div>
         </div>
+
+        <div class="card my-4">
+            <h5 class="card-header">Agregar Etiqueta:</h5>
+            <div class="card-body">
+              <form action="" method="POST">
+                  @csrf
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="body"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+
+          @if (!isset($post->image->url))
+          <div class="card my-4">
+            <h5 class="card-header">Agregar Imagen:</h5>
+            <div class="card-body">
+              <form action="" method="POST">
+                  @csrf
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="body"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+          @endif
 
 
       </div>

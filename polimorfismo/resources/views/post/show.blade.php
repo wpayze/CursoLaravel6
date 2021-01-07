@@ -32,16 +32,18 @@
 
         <!-- Comments Form -->
         <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <h5 class="card-header">Dejar un Comentario:</h5>
+            <div class="card-body">
+              <form action="{{route('comentariopost')}}" method="POST">
+                  @csrf
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="body"></textarea>
+                </div>
+                <input type="hidden" value="{{$post->id}}" name="id">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
           </div>
-        </div>
 
         <!-- Single Comment -->
 
@@ -75,7 +77,33 @@
           </div>
         </div>
 
+        <div class="card my-4">
+            <h5 class="card-header">Agregar Etiqueta:</h5>
+            <div class="card-body">
+              <form action="" method="POST">
+                  @csrf
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="body"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
 
+          @if (!isset($post->image->url))
+          <div class="card my-4">
+            <h5 class="card-header">Agregar Imagen:</h5>
+            <div class="card-body">
+              <form action="" method="POST">
+                  @csrf
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="body"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+          @endif
       </div>
 
     </div>

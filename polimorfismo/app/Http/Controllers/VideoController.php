@@ -18,7 +18,18 @@ class VideoController extends Controller
         return view("video.show", compact('video'));
     }
 
-    public function agregarComentario() {
+    public function agregarComentario(Request $request) {
+        $data = $request->validate([
+            "body" => "required",
+            "id" => "required"
+        ]);
 
+        $body = $data["body"];
+        $id = $data["id"];
+
+        $video = Video::find($id);
+        $video->comments()->create(["body"=> $body ]);
+
+        return redirect("/videos/" . $id);
     }
 }

@@ -16,4 +16,19 @@ class PostController extends Controller
         $post = Post::find($id);
         return view("post.show", compact("post"));
     }
+
+    public function agregarComentario(Request $request) {
+        $data = $request->validate([
+            "body" => "required",
+            "id" => "required"
+        ]);
+
+        $body = $data["body"];
+        $id = $data["id"];
+
+        $video = Post::find($id);
+        $video->comments()->create(["body"=> $body ]);
+
+        return redirect("/posts/" . $id);
+    }
 }

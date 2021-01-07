@@ -36,6 +36,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('posts') }}">{{ __('Publicaciones') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('videos') }}">{{ __('Videos') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
