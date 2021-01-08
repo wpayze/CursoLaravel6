@@ -12,3 +12,6 @@ composer require laravel/ui="1.*" --dev (CREAR AUTH) cmd 1
 php artisan ui:auth (CREAR AUTH) cmd 2
 php artisan make:mail Contacto --markdown=emails.contacto
 php artisan make:notification nombre
+php artisan make:policy NombrePolicy -m NombreModelo
+composer require spatie/laravel-query-builder
+composer require barryvdh/laravel-debugbar --dev
