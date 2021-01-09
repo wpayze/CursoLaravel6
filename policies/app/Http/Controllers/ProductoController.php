@@ -16,19 +16,50 @@ class ProductoController extends Controller
         // $this->authorize("viewAny", Producto::class);
         // $productos = Producto::paginate(10);
 
+        $paginacion = request()->get("paginacion") ? request()->get("paginacion") : 10;
+
+        $filters = request()->get("filter");
+        Debugbar::info(request()->get("estado"));
+
+        if (request()->get("estado") == "active") {
+            $filters["activo"] = "true";
+            request()->merge([
+                "filter" => $filters
+            ]);
+        }
+
+        if (request()->get("estado") == "inactive") {
+            $filters["inactivo"] = "true";
+            request()->merge([
+                "filter" => $filters
+            ]);
+        }
+
         $productos = QueryBuilder::for(Producto::class)
                         ->allowedFilters([
                             'nombre',
                             'categoria',
-                            'id',
+                            'precio',
+                            AllowedFilter::exact('id'),
                             AllowedFilter::scope('activo'),
                             AllowedFilter::scope('inactivo')
                         ])
-                        ->paginate(10)
+                        ->paginate( $paginacion )
                         ->appends( request()->query() );
 
-        Session::put('productos', $productos);
-        Session::put('nombre', "wil");
+        $query = trim(request()->get("search"));
+
+        if ($query) {
+            $productos = Producto::where("nombre", "LIKE", "%" . $query . "%")
+            ->orWhere("precio", "LIKE", "%" . $query . "%")
+            ->orWhere("categoria", "LIKE", "%" . $query . "%")
+            ->paginate($paginacion)
+            ->appends( request()->query() );
+        }
+
+        // Session::put('productos', $productos);
+        // Session::put('nombre', "wil");
+
         // Debugbar::info($object);
         // Debugbar::error('Error!');
         // Debugbar::warning('Watch out…');
