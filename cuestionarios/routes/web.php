@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('cuestionarios/create', "CuestionarioController@create")->name("cuestionarios.create");
+Route::post('/cuestionarios', "CuestionarioController@store")->name("cuestionarios.store");
+Route::get('cuestionarios/{cuestionario}', "CuestionarioController@show")->name("cuestionarios.show");
+
+Route::get('cuestionarios/{cuestionario}/preguntas/create', "PreguntaController@create")->name("cuestionarios.pregunta.create");
+Route::post('cuestionarios/{cuestionario}/preguntas', "PreguntaController@store")->name("cuestionarios.pregunta.store");
+
+Route::get("/encuestas/{cuestionario}-{slug}", "EncuestaController@show");
+Route::post("/encuestas/{cuestionario}-{slug}", "EncuestaController@store");
