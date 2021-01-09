@@ -19,8 +19,6 @@ class ProductoController extends Controller
         $paginacion = request()->get("paginacion") ? request()->get("paginacion") : 10;
 
         $filters = request()->get("filter");
-        Debugbar::info(request()->get("estado"));
-
         if (request()->get("estado") == "active") {
             $filters["activo"] = "true";
             request()->merge([
